@@ -1,3 +1,4 @@
+from distutils import command
 from hashlib import new
 from math import*
 import distutils
@@ -24,15 +25,14 @@ def btnCommand(command):
     global num1
     global num3
     mathOp=command #+-*/
-    num1=int(e.get())
-    num3=float(e.get())
+    num1=(float(e.get()))
     e.delete(0,END)
     return 0
 
 #================================================================================================================
 def vienads():
     global num2
-    num2=int(e.get())
+    num2=(float(e.get()))
     result=0
     if mathOp=="+":
         result=num1+num2
@@ -49,15 +49,44 @@ def vienads():
     return 0
 
 #================================================================================================================
-def procents():
-    num3=float(e.get())
-    result=0
-    if mathOp=="%":
-        result=num3/100
-    else:
-        result=0
+def sq_rt():
+    global operator
+    global num1
+    global mathOp
+    num1=(float(e.get()))
+    num1=sqrt(num1)
     e.delete(0,END)
-    e.insert(0,str(result))
+    e.insert(0,num1)
+    return 0
+
+#================================================================================================================
+def kvad():
+    global operator
+    global num1
+    global mathOp
+    num1=(float(e.get())**2)
+    e.delete(0,END)
+    e.insert(0,num1)
+    return 0
+#================================================================================================================
+def min():
+    global operator
+    global mathOp #matemātiskais operators
+    global num1
+    num1=-(float(e.get()))
+    e.delete(0,END)
+    e.insert(0,str(num1))
+    return 0
+
+#================================================================================================================
+def logoritms():
+    global operator
+    global mathOp #matemātiskais operators
+    global num1
+    num1=(float(e.get()))
+    num1=log(num1,10)
+    e.delete(0,END)
+    e.insert(0,str(num1))
     return 0
 
 #================================================================================================================
@@ -70,26 +99,26 @@ def notirit():
 #================================================================================================================
 e=Entry(mansLogs,width=15,bd=20,font=("Arial Black",20))
 #================================================================================================================
-btn0=Button(mansLogs,text='0',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(0))
-btn1=Button(mansLogs,text='1',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(1))
-btn2=Button(mansLogs,text='2',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(2))
-btn3=Button(mansLogs,text='3',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(3))
-btn4=Button(mansLogs,text='4',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(4))
-btn5=Button(mansLogs,text='5',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(5))
-btn6=Button(mansLogs,text='6',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(6))
-btn7=Button(mansLogs,text='7',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(7))
-btn8=Button(mansLogs,text='8',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(8))
-btn9=Button(mansLogs,text='9',padx='40',pady='20', bd=10, bg='green', command=lambda:btnClick(9))
-btnAdd=Button(mansLogs,text='+',padx='40',pady='20', bd=10, command=lambda:btnCommand("+"))
-btnSub=Button(mansLogs,text='-',padx='40',pady='20', bd=10, command=lambda:btnCommand("-"))
-btnReiz=Button(mansLogs,text='*',padx='40',pady='20', bd=10, command=lambda:btnCommand("*"))
-btnDal=Button(mansLogs,text='/',padx='40',pady='20', bd=10, command=lambda:btnCommand("/"))
-btnC=Button(mansLogs,text='C',padx='39',pady='20', bd=10, command=notirit)
-btnVien=Button(mansLogs,text='=',padx='40',pady='20', bd=10, command=vienads)
-btnKom=Button(mansLogs,text='.',padx='41',pady='20', bd=10)
-btnPlusMin=Button(mansLogs,text='+/-',padx='34',pady='20', bd=10, command=lambda:btnCommand("-"))
-btnIek=Button(mansLogs,text='( )',padx='38',pady='20', bd=10)
-btnProc=Button(mansLogs,text='%',padx='38',pady='20', bd=10, command=lambda:btnCommand("%"))
+btn0=Button(mansLogs,text='0',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(0))
+btn1=Button(mansLogs,text='1',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(1))
+btn2=Button(mansLogs,text='2',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(2))
+btn3=Button(mansLogs,text='3',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(3))
+btn4=Button(mansLogs,text='4',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(4))
+btn5=Button(mansLogs,text='5',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(5))
+btn6=Button(mansLogs,text='6',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(6))
+btn7=Button(mansLogs,text='7',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(7))
+btn8=Button(mansLogs,text='8',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(8))
+btn9=Button(mansLogs,text='9',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='green', command=lambda:btnClick(9))
+btnAdd=Button(mansLogs,text='+',padx='40',pady='20', bd=10, font=('Arial Black',20), command=lambda:btnCommand("+"))
+btnSub=Button(mansLogs,text='-',padx='43',pady='20', bd=10, font=('Arial Black',20), command=lambda:btnCommand("-"))
+btnReiz=Button(mansLogs,text='*',padx='40',pady='20', bd=10, font=('Arial Black',20), command=lambda:btnCommand("*"))
+btnDal=Button(mansLogs,text='/',padx='43',pady='20', bd=10, font=('Arial Black',20), command=lambda:btnCommand("/"))
+btnC=Button(mansLogs,text='C',padx='39',pady='20', bd=10, font=('Arial Black',20), bg='palegreen', command=notirit)
+btnVien=Button(mansLogs,text='=',padx='40',pady='20', bd=10, font=('Arial Black',20), bg='palegreen', command=vienads)
+btnKom=Button(mansLogs,text='log',padx='27',pady='20', bd=10, font=('Arial Black',20), command=logoritms)
+btnPlusMin=Button(mansLogs,text='+/-',padx='31',pady='20', bd=10, font=('Arial Black',20), command=min)
+btnIek=Button(mansLogs,text='x²',padx='35',pady='20', bd=10, font=('Arial Black',20), command=kvad)
+btnProc=Button(mansLogs,text='√',padx='41',pady='20', bd=10, font=('Arial Black',20), command=sq_rt)
 
 #================================================================================================================
 e.grid(row=0,column=0,columnspan=4) # ievieto režģī
